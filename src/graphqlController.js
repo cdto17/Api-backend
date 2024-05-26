@@ -71,7 +71,7 @@ const resolvers = {
         deleteSong: (_, { id }) => {
             const index = songs.findIndex(song => song.id === id);
             if (index === -1) {
-                throw new Error('Song not found');
+                throw new Error('Songs not found');
             }
             const [deletedSong] = songs.splice(index, 1);
             return deletedSong;
