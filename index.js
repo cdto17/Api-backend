@@ -1,5 +1,6 @@
 const express = require('express');
 const restController = require('./src/restController');
+const xmlController = require('./src/xmlController');
 const cors = require('cors');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require("./src/graphqlController");
@@ -13,8 +14,14 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use(express.text({ type: 'application/xml' }));
+
 // Rutas RESTful
 app.use('/api', restController);
+
+
+// Rutas para manejo de XML
+app.use('/xml', xmlController);
 
 // Configurar Apollo Server
 const server = new ApolloServer({ typeDefs, resolvers });
